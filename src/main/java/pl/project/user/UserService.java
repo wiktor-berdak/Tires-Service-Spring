@@ -1,5 +1,7 @@
 package pl.project.user;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -8,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService implements UserDetailsService {
-
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
@@ -24,10 +25,18 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findUserByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("no user with the given e-mail"));
+    }
+
+    public User getCustomUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return (User)authentication.getPrincipal();
+    }
+
+    public int getCustomUserId() {
+        return getCustomUser().getUserId();
     }
 }

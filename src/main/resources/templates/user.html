@@ -16,23 +16,29 @@
         <div class="col-12 col-md-8 col-lg-6">
             <h1>Choose the option</h1>
         </div>
-            <form >
-                <div class="col-md-4 mb-3">
-                    <button type="submit" class="btn btn-outline-success">Make an appointment</button>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <button type="submit" class="btn btn-outline-success">Your profile</button>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <button type="submit" class="btn btn-outline-success">Change appointment</button>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <button type="submit" class="btn btn-outline-success">Delete appointment</button>
-                </div>
-            </form>
-            <form th:action="@{/logout}" th:method="post">
-                <button type="submit" class="btn btn-primary">Log out</button>
-            </form>
+        <form>
+            <div class="col-md-4 mb-3">
+                <a href="#" role="button" class="btn btn-outline-success" th:href="@{/car}">Add car</a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <a href="#" role="button" class="btn btn-outline-success" th:href="@{/cars}">Car list</a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <a href="#" role="button" class="btn btn-outline-success" th:href="@{/pack}">Wheels/Tires</a>
+            </div>
+            <div class="col-md-4 mb-3">
+                <button type="submit" class="btn btn-outline-success">Make an appointment</button>
+            </div>
+            <div class="col-md-4 mb-3">
+                <button type="submit" class="btn btn-outline-success">Change appointment</button>
+            </div>
+            <div class="col-md-4 mb-3">
+                <button type="submit" class="btn btn-outline-success">Delete appointment</button>
+            </div>
+        </form>
+        <form th:action="@{/logout}" th:method="post">
+            <button type="submit" class="btn btn-primary">Log out</button>
+        </form>
     </div>
 </div>
 </body>
