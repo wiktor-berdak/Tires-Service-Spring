@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>register form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-            crossorigin="anonymous"></script>
 </head>
 <body class="bg-image min-vh-100" style="background-image: url('https://www.tirerack.com/content/dam/tirerack/desktop/components/hero/TDG_0419.jpg'); background-repeat: no-repeat; background-size: cover;
   object-fit: cover; overflow: hidden">
 <div class="d-flex justify-content-center align-items-center">
     <div class="container d-flex p-4 my-3 bg-dark text-white justify-content-center align-items-center"
          style="opacity: 90%">
-        <div class="col-12 col-md-8 col-lg-6">
+        <div class="col-10 col-md-8 col-lg-6 bg-dark" style=" opacity: 90%">
             <form th:action="@{/car}" th:method="post" th:object="${car}" th:autocomplete="off" class="needs-validation"
                   novalidate>
-                <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label>Car brand</label>
                         <select th:field="*{carBrand}" class="form-select" aria-label="Default select example">
@@ -39,14 +34,10 @@
                             <div class="invalid-tooltip">
                                 Please enter a valid registration number!
                             </div>
-                            <div sec:authorize="isAuthenticated()">
-                                Authenticated as <span th:text="${userId}"></span>
-                            </div>
                         </div>
                         <a href="#" role="button" class="btn btn-outline-primary float-left" th:href="@{/user}">Back</a>
                         <button type="submit" class="btn btn-outline-success float-right ">Add car</button>
                     </div>
-                </div>
             </form>
         </div>
     </div>

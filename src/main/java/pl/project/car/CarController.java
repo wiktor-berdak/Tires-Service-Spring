@@ -15,21 +15,23 @@ import java.util.List;
 public class CarController {
     private CarService carService;
     private CarRepository carRepository;
+    private  UserService userService;
 
-    public CarController(CarService carService, CarRepository carRepository) {
+    public CarController(CarService carService, CarRepository carRepository, UserService userService) {
         this.carService = carService;
         this.carRepository = carRepository;
+        this.userService = userService;
     }
 
     @GetMapping("/car")
-    public String getCarForm(ModelMap modelMap, UserService userService) {
+    public String getCarForm(ModelMap modelMap) {
         modelMap.addAttribute("car", new Car());
         modelMap.addAttribute("userId", userService.getCustomUserId());
         return "car";
     }
 
     @PostMapping("/car")
-    public String addCar(ModelMap modelMap, @Validated Car car, UserService userService, BindingResult bindingResult) {
+    public String addCar(ModelMap modelMap, @Validated Car car, BindingResult bindingResult) {
         modelMap.addAttribute("car", car);
 
         if (bindingResult.hasErrors()) {
@@ -47,7 +49,7 @@ public class CarController {
 
     @GetMapping("/cars")
     public String getCars(ModelMap modelMap) {
-        List<Car> carList = carRepository.findAll();
+        List<Car> carList = carRepository.findAllCarsByUserid(userService.getCustomUserId());
         modelMap.addAttribute("cars", carList);
         return "cars";
     }

@@ -13,7 +13,6 @@ public class Pack {
     private int packId;
     private PackType packType;
     @Nullable
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int position;
     @Nullable
     private boolean isPackToWarehouse;

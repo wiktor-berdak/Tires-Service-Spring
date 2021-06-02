@@ -33,6 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .antMatchers("/pack")
                 .authenticated()
+                .antMatchers("/appointment")
+                .authenticated()
                 .antMatchers("/admin")
                 .hasRole("ADMIN")
                 .antMatchers("/**")

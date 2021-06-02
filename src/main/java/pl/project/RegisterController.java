@@ -39,7 +39,7 @@ public class RegisterController {
             modelMap.addAttribute("usernameAlreadyExists", true);
             return "register";
         }
-        return "register-result";
+        return "user";
     }
 
 }

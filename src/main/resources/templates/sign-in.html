@@ -5,43 +5,43 @@
     <title>HOME</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-            crossorigin="anonymous"></script>
-
+    <link rel="icon" type="image/png" href="https://pnglux.com/wp-content/uploads/2021/02/Tire-PNG-Pic.png">
 </head>
 <body class="bg-image min-vh-100" style="background-image: url('https://www.tirerack.com/content/dam/tirerack/desktop/components/hero/TDG_0419.jpg');
  background-repeat: no-repeat; background-size: cover;object-fit: cover; overflow: hidden">
-
-<div class="card-header bg-dark" style="opacity: 90%"><h1 class="row h-50 justify-content-center text-white align-items-center" style="opacity: 90%">WELCOME TO TYRES SERVICE</h1></div>
- <div class="d-flex justify-content-center align-items-center">
-    <div class=" container row h-50;  p-3 my-3 text-white justify-content-center align-items-center">
-                <div class="col-10 col-md-8 col-lg-6 bg-dark"style=" opacity: 90%">
-                    <form th:action="@{/}" th:method="post" th:autocomplete="off">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">@</span>
-                                </div>
-                                <input type="text" class="form-control" id="username"
-                                       placeholder="Username..." th:name="username">
-                            </div>
+<div class="card-header bg-dark" style="opacity: 90%">
+    <h1 class="row h-50 justify-content-center text-white align-items-center" style="opacity: 90%">WELCOME TO TIRES
+        SERVICE</h1>
+</div>
+<div class="d-flex justify-content-center align-items-center">
+    <div class=" container row  p-3 my-3 text-white justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6 bg-dark" style=" opacity: 90%">
+            <form th:action="@{/}" th:method="post" th:autocomplete="off">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" class="form-control password" id="password" th:name="password"
-                                   placeholder="Password...">
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-outline-success">Log in</button>
-                        </div>
-                    </form>
-                    <div class=" text-center"> If you don't have account yet please register now
-                        <a href="#" role="button" class="btn btn-outline-primary " th:href="@{/register}">Sign up</a>
+                        <input type="text" class="form-control" id="username"
+                               placeholder="Username..." th:name="username">
                     </div>
                 </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control password" id="password" th:name="password"
+                           placeholder="Password...">
+                </div>
+                <div class="text-center" style="margin-top: 5px">
+                    <button type="submit" class="btn btn-outline-success">Log in</button>
+                </div>
+            </form>
+            <div class=" text-center"> If you don't have account yet please
+                <a href="#" role="button" class="btn btn-outline-primary " style="margin-bottom: 5px"
+                   th:href="@{/register}">Sign up</a>
             </div>
         </div>
+    </div>
+</div>
 </body>
 </html>

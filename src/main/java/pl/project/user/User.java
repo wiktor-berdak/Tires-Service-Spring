@@ -28,7 +28,7 @@ public class User implements UserDetails {
     @Email
     @Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "enter a valid email address")
     private String email;
-    @Pattern(regexp = "[1-9][0-9]{9}", message = "9 digits example:123456789")
+    @Pattern(regexp = "^([+]?[\\s0-9]+)?(\\d{3}|[(]?[0-9]+[)])?([-]?[\\s]?[0-9])+$", message = "9 digits example:123456789")
     @NotNull
     private String phoneNumber;
     @NotNull

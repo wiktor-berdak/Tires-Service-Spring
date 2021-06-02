@@ -1,5 +1,6 @@
 package pl.project.calendar;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.Nullable;
 import pl.project.car.Car;
 import pl.project.pack.Pack;
@@ -25,6 +26,7 @@ public class Calendar {
     @ManyToOne(fetch = FetchType.LAZY)
     private Pack pack;
 
+    @DateTimeFormat(pattern = "dd/MM/yyyy h:mm a")
     private LocalDateTime datetime;
 
 
@@ -56,6 +58,31 @@ public class Calendar {
 
     public void setDatetime(LocalDateTime datetime) {
         this.datetime = datetime;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    @Nullable
+    public Pack getPack() {
+        return pack;
+    }
+
+    public void setPack(@Nullable Pack pack) {
+        this.pack = pack;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 

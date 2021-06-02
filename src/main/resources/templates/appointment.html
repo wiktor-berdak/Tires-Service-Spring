@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>appointment</title>
+
+    <!-- Bootstrap 4.5 CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Bootstrap JS Requirements -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="D:\Projekty\spring-tyresApp\src\main\resources\static\js"></script>
+</head>
+<body class="bg-image min-vh-100" style="background-image: url('https://www.tirerack.com/content/dam/tirerack/desktop/components/hero/TDG_0419.jpg'); background-repeat: no-repeat; background-size: cover;
+  object-fit: cover; overflow: hidden">
+
+<div class="card-header bg-dark" style="opacity: 90%">
+    <h1 class="row justify-content-center text-white align-items-center" style="opacity: 90%">APPOINTMENT</h1>
+</div>
+<div class="d-flex justify-content-center align-items-center">
+    <div class=" container row  p-3 my-3 text-white justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6 bg-dark" style=" opacity: 90%">
+            <form th:action="@{appointment}" th:method="post" th:autocomplete="off">
+                <div class="col-md-4 mb-3">
+                    <div style="margin-top: 5px">
+                        <label class="input-group-text">Date and time</label>
+                        <input class="form-control" type="datetime-local" id="datetimepicker">
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <th:block th:if="${#lists.isEmpty(cars)}">List of cars is empty</th:block>
+                    <label>Car</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option th:each="car: ${cars}"
+                                th:value="${car.getCarId()}" th:text="${car.getRegistrationNumber()}">
+                        </option>
+                    </select>
+                </div>
+                <div style="margin: auto">
+                    <a href="#" role="button" class="btn btn-outline-primary float-left" th:href="@{/user}">Back</a>
+                    <button type="submit" class="btn btn-outline-success float-right">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

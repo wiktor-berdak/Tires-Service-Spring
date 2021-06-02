@@ -37,8 +37,9 @@ public class PackController {
             if(model.containsValue(true)){
                 pack.setPackToWarehouse(true);
                 pack.setUser(userService.getCustomUser());
+                pack.setPackId(packRepository.findFirstEmptyPlaceToStorePack());
+                packService.save(pack);
             }
-            packService.save(pack);
         } catch (DataIntegrityViolationException e) {
             return "pack";
         }
