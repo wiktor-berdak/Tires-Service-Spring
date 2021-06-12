@@ -15,3 +15,4 @@
 });
 }, false);
 })();
+    $('.dropdown-toggle').dropdown()

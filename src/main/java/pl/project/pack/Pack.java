@@ -1,9 +1,12 @@
 package pl.project.pack;
 
 import org.springframework.lang.Nullable;
+import pl.project.calendar.Calendar;
 import pl.project.user.User;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 
@@ -16,8 +19,11 @@ public class Pack {
     private int position;
     @Nullable
     private boolean isPackToWarehouse;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "user_user_id")
     private User user;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Calendar> calendarList = new ArrayList<>();
 
     public Pack() {
     }

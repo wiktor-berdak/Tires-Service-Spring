@@ -1,8 +1,11 @@
 package pl.project.car;
 
+import pl.project.calendar.Calendar;
 import pl.project.user.User;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Car {
@@ -13,8 +16,12 @@ public class Car {
     @Column(unique = true)
     private String registrationNumber;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "user_user_id")
     private User user;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy ="user" )
+    private List<Calendar> calendarList = new ArrayList<>();
 
     public Car() {
     }

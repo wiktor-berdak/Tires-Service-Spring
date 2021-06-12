@@ -1,46 +1,134 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>register form</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Car</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script th:src="@{/js/date-time-picker.js}"></script>
+    <script th:src="@{/js/invalid.js}"></script>
 </head>
-<body class="bg-image min-vh-100" style="background-image: url('https://www.tirerack.com/content/dam/tirerack/desktop/components/hero/TDG_0419.jpg'); background-repeat: no-repeat; background-size: cover;
-  object-fit: cover; overflow: hidden">
-<div class="d-flex justify-content-center align-items-center">
-    <div class="container d-flex p-4 my-3 bg-dark text-white justify-content-center align-items-center"
-         style="opacity: 90%">
-        <div class="col-10 col-md-8 col-lg-6 bg-dark" style=" opacity: 90%">
-            <form th:action="@{/car}" th:method="post" th:object="${car}" th:autocomplete="off" class="needs-validation"
-                  novalidate>
-                    <div class="col-md-4 mb-3">
-                        <label>Car brand</label>
-                        <select th:field="*{carBrand}" class="form-select" aria-label="Default select example">
-                            <option th:each="brand: ${T(pl.project.car.CarBrand).values()}"
-                                    th:value="${brand}" th:text="${brand}">
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label for="validationTooltip02">Registration number</label>
-                        <input type="text" class="form-control first_name" id="validationTooltip02"
-                               placeholder=" example: ABC 123" th:field="*{registrationNumber}" required>
-                        <span th:if="${#fields.hasErrors('registrationNumber')}"
-                              th:errors="*{registrationNumber}"></span>
-                        <span th:if="${registrationNumberAlreadyExists}">user with the given e-mail already exists</span>
-                        <div class="invalid-tooltip" th:if="${registrationNumberAlreadyExists}">registration number
-                            already exists
-                            <div class="invalid-tooltip">
-                                Please enter a valid registration number!
-                            </div>
+<body class="bg-image min-vh-100" style="background-image: url('https://www.tirerack.com/content/dam/tirerack/desktop/components/hero/TDG_0419.jpg');
+ background-repeat: no-repeat; background-size: cover;object-fit: cover; overflow: hidden">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 90%">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo01">
+            <a class="navbar-brand">Tires Service</a>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" th:href="@{/user}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/car}">Car</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/pack}" tabindex="-1" aria-disabled="true">Pack</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/appointment}" tabindex="-1" aria-disabled="true">Appointment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/user}" aria-disabled="true">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/logout}" aria-disabled="true">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="accordion" id="accordionExample" style="opacity: 90%">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"><i class="fa fa-plus"></i>
+                    Add
+                </button>
+            </h2>
+        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class=" container row  p-3 my-3 justify-content-center align-items-center">
+                        <div class="col-6 col-md-6 col-lg-4 bg-light text-center" style=" opacity: 90%">
+                            <form th:action="@{/car}" th:method="post" th:object="${car}" th:autocomplete="off"
+                                  class="needs-validation " novalidate>
+                                <div class="form-group ">
+                                    <label for="car-brand">Car brand</label>
+                                    <select th:field="*{carBrand}" class="custom-select" id="car-brand">
+                                        <option th:each="brand: ${T(pl.project.car.CarBrand).values()}"
+                                                th:value="${brand}" th:text="${brand}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="validationTooltip02">Registration number</label>
+                                    <input type="text" class="form-control first_name" id="validationTooltip02"
+                                           placeholder="Ab 12345" th:field="*{registrationNumber}" required>
+                                    <span th:if="${#fields.hasErrors('registrationNumber')}"
+                                          th:errors="*{registrationNumber}"></span>
+                                    <span th:if="${registrationNumberAlreadyExists}">user with the given e-mail already exists</span>
+                                    <div class="invalid-tooltip" th:if="${registrationNumberAlreadyExists}">registration
+                                        number
+                                        already exists
+                                        <div class="invalid-tooltip" th:if="${#fields.hasErrors('registrationNumber')}"
+                                             th:errors="*{registrationNumber}">
+                                            Please enter a valid registration number!
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-success float-right add-car"
+                                        style="margin-top: 5px; margin-bottom: 5px">Add
+                                </button>
+                            </form>
                         </div>
-                        <a href="#" role="button" class="btn btn-outline-primary float-left" th:href="@{/user}">Back</a>
-                        <button type="submit" class="btn btn-outline-success float-right ">Add car</button>
                     </div>
-            </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+                <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"><i class="fa fa-plus"></i>
+                    List
+                </button>
+            </h2>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="container justify-content-center align-items-center">
+                    <div th:if="${not #lists.isEmpty(cars)}">
+                        <h2>Car list</h2>
+                        <table class="table table-stripped ">
+                            <thead>
+                            <tr>
+                                <th> Car brand</th>
+                                <th> Registration number</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="car : ${cars}">
+                                <td><span th:text="*{car.carBrand}"> Car brand </span></td>
+                                <td><span th:text="*{car.registrationNumber}"> Registration number </span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>

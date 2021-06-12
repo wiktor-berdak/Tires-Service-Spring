@@ -28,7 +28,7 @@ public class RegisterController {
     }
 
     @PostMapping
-    public String register(ModelMap modelMap, @Validated User user, BindingResult bindingResult) {
+    public String register(ModelMap modelMap, User user, BindingResult bindingResult) {
         modelMap.addAttribute("user", user);
         if (bindingResult.hasErrors()) {
             return "register";

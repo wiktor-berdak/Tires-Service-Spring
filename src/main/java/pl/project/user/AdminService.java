@@ -1,49 +1,28 @@
 package pl.project.user;
 
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class AdminService implements UserDetailsManager {
+public class AdminService implements UserDetailsService {
     private UserRepository userRepository;
 
-
-    public List<User> getAll() {
-        return userRepository.findAll();
+    public AdminService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
+
     @Override
-    public void createUser(UserDetails userDetails) {
-
-
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findUserByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("no user with the given e-mail"));
     }
 
-    @Override
-    public void updateUser(UserDetails userDetails) {
-
-    }
-
-    @Override
-    public void deleteUser(String s) {
-
-    }
-
-    @Override
-    public void changePassword(String s, String s1) {
-
-    }
-
-    @Override
-    public boolean userExists(String s) {
-        return false;
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return null;
+    public void delete(String email) {
+        userRepository.findUserByEmail(email).ifPresent(user -> userRepository.delete(user));
     }
 }

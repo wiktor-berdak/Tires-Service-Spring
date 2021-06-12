@@ -12,32 +12,32 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-
 public class Calendar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "car_car_id")
     private Car car;
 
     @Nullable
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "pack_pack_id")
     private Pack pack;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy h:mm a")
+    @DateTimeFormat(pattern = "DD/MM/YYYY HH:mm")
     private LocalDateTime datetime;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "user_user_id")
     private User user;
 
     public Calendar() {
     }
 
-    public Calendar(Car car, Pack pack, LocalDateTime datetime, User user) {
+    public Calendar(Car car, @Nullable Pack pack, LocalDateTime datetime, User user) {
         this.car = car;
         this.pack = pack;
         this.datetime = datetime;

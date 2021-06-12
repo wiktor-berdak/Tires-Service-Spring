@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface CarRepository extends JpaRepository<Car, Integer> {
 
-    @Query(value = "SELECT r FROM Car r WHERE r.user.userId=:userId")
-            List<Car>findAllCarsByUserid(@Param("userId") Integer userId);
+    @Query(value = "SELECT c FROM Car c WHERE c.user.userId=:userId")
+    List<Car> findAllCarsByUserid(@Param("userId") Integer userId);
+
 }

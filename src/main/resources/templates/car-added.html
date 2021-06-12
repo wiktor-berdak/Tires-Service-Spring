@@ -51,15 +51,11 @@
 <div class="d-flex justify-content-center align-items-center">
     <div class=" container row  p-3 my-3 justify-content-center align-items-center">
         <div class="col-8 col-md-8 col-lg-6 bg-light text-center" style=" opacity: 90%">
-            <h2 class="mt-5 mb-4">Appointment confirmed</h2>
+            <h2 class="mt-5 mb-4">Car has been added</h2>
 
-            <p><label>Date & Time: </label> <strong
-                    th:text="${#dates.format(calendar.datetime, 'dd/MM/yyyy h:mm a')}"></strong></p>
-
-            <a th:href="@{/user}" class="btn btn-primary">Back</a>
+            <a href="#" role="button" class="btn btn-outline-primary float-left" th:href="@{/car}">Back</a>
         </div>
     </div>
 </div>
-
 </body>
 </html>

@@ -4,7 +4,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.project.user.UserService;
@@ -15,7 +14,7 @@ import java.util.List;
 public class CarController {
     private CarService carService;
     private CarRepository carRepository;
-    private  UserService userService;
+    private UserService userService;
 
     public CarController(CarService carService, CarRepository carRepository, UserService userService) {
         this.carService = carService;
@@ -27,11 +26,13 @@ public class CarController {
     public String getCarForm(ModelMap modelMap) {
         modelMap.addAttribute("car", new Car());
         modelMap.addAttribute("userId", userService.getCustomUserId());
+        List<Car> carList = carRepository.findAllCarsByUserid(userService.getCustomUserId());
+        modelMap.addAttribute("cars", carList);
         return "car";
     }
 
     @PostMapping("/car")
-    public String addCar(ModelMap modelMap, @Validated Car car, BindingResult bindingResult) {
+    public String addCar(ModelMap modelMap, Car car, BindingResult bindingResult) {
         modelMap.addAttribute("car", car);
 
         if (bindingResult.hasErrors()) {
@@ -44,13 +45,7 @@ public class CarController {
             modelMap.addAttribute("registrationNumberAlreadyExists", true);
             return "car";
         }
-        return "cars";
+        return "car-added";
     }
 
-    @GetMapping("/cars")
-    public String getCars(ModelMap modelMap) {
-        List<Car> carList = carRepository.findAllCarsByUserid(userService.getCustomUserId());
-        modelMap.addAttribute("cars", carList);
-        return "cars";
-    }
 }

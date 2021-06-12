@@ -12,10 +12,9 @@ import java.io.IOException;
 @Controller
 public class LoginController {
 
-
     @GetMapping("/")
     public String login() {
-        return "sign-in";
+        return "login";
     }
 
     @GetMapping("/user")

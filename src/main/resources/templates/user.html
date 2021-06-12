@@ -1,42 +1,64 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <title>HOME</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Car</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script th:src="@{/js/date-time-picker.js}"></script>
+    <script th:src="@{/js/invalid.js}"></script>
 </head>
 <body class="bg-image min-vh-100" style="background-image: url('https://www.tirerack.com/content/dam/tirerack/desktop/components/hero/TDG_0419.jpg');
  background-repeat: no-repeat; background-size: cover;object-fit: cover; overflow: hidden">
-<div class="card-header bg-dark" style="opacity: 90%">
-    <h1 class="row h-50 justify-content-center text-white align-items-center" style="opacity: 90%">DASHBOARD</h1>
-</div>
-<div class="" style="opacity: 90%">
-    <div class="container d-flex p-4 my-3 bg-dark text-white justify-content-center align-items-center">
-        <div class="col-12 col-md-8 col-lg-6">
-            <h1 style="float:right">Choose the option</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="opacity: 90%">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo01">
+            <a class="navbar-brand">Tires Service</a>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" th:href="@{/user}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/car}">Car</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/pack}" aria-disabled="true">Pack</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/appointment}" aria-disabled="true">Appointment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/user}" aria-disabled="true">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/logout}" aria-disabled="true">Logout</a>
+                </li>
+            </ul>
         </div>
-        <div class="col-10 col-md-8 col-lg-6">
-            <form>
-                <div class="col-md-4 mb-3">
-                    <a href="#" role="button" class="btn btn-outline-success" th:href="@{/car}">Add car</a>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <a href="#" role="button" class="btn btn-outline-success" th:href="@{/cars}">Car list</a>
-                </div>
+    </div>
+</nav>
 
-                <div class="col-md-4 mb-3">
-                    <a href="#" role="button" class="btn btn-outline-success" th:href="@{/pack}">Add pack</a>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <a href="#" role="button" class="btn btn-outline-success" th:href="@{/appointment}">Appointment</a>
-                </div>
-            </form>
+
+<div class="d-flex justify-content-center align-items-center">
+    <div class=" container row  p-3 my-3 justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6 bg-light text-center" style=" opacity: 90%">
+            <div class="list-group">
+                <button type="button" class="btn btn-outline-secondary">Edit profile</button>
+                <form th:action="@{user}" th:method="delete">
+                <button type="button" class="btn btn-outline-danger">Delete account</button>
+                </form>
+            </div>
         </div>
-        <form th:action="@{/logout}" th:method="post">
-            <button type="submit" class="btn btn-primary" style="margin-right: 5px">Log out</button>
-        </form>
     </div>
 </div>
+
 </body>
 </html>

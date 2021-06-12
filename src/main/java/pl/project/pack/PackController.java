@@ -4,7 +4,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.project.user.UserService;
@@ -27,7 +26,7 @@ public class PackController {
     }
 
     @PostMapping("/pack")
-    public String addPack(ModelMap modelMap, @Validated Pack pack, UserService userService, BindingResult bindingResult) {
+    public String addPack(ModelMap modelMap, Pack pack, UserService userService, BindingResult bindingResult) {
         modelMap.addAttribute("pack", pack);
         ModelMap model = modelMap.addAttribute("checkbox", true);
         if (bindingResult.hasErrors()) {
